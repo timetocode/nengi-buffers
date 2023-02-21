@@ -68,6 +68,62 @@ class BufferWriter implements IBinaryWriter {
             this.writeUInt8(value[i])
         }
     }
+
+    writeInt8Array(value: Int8Array) {
+        const length = value.length
+        this.writeUInt32(length)
+        for (let i = 0; i < value.length; i++) {
+            this.writeInt8(value[i])
+        }
+    }
+
+    writeUInt16Array(value: Uint16Array) {
+        const length = value.length
+        this.writeUInt32(length)
+        for (let i = 0; i < value.length; i++) {
+            this.writeUInt16(value[i])
+        }
+    }
+
+    writeInt16Array(value: Int16Array) {
+        const length = value.length
+        this.writeUInt32(length)
+        for (let i = 0; i < value.length; i++) {
+            this.writeInt16(value[i])
+        }
+    }
+
+    writeUInt32Array(value: Uint32Array) {
+        const length = value.length
+        this.writeUInt32(length)
+        for (let i = 0; i < value.length; i++) {
+            this.writeUInt32(value[i])
+        }
+    }
+
+    writeInt32Array(value: Int32Array) {
+        const length = value.length
+        this.writeUInt32(length)
+        for (let i = 0; i < value.length; i++) {
+            this.writeInt32(value[i])
+        }
+    }
+
+    writeFloat32Array(value: Float32Array) {
+        const length = value.length
+        this.writeUInt32(length)
+        for (let i = 0; i < value.length; i++) {
+            this.writeFloat32(value[i])
+        }
+    }
+
+    writeFloat64Array(value: Float64Array) {
+        const length = value.length
+        this.writeUInt32(length)
+        for (let i = 0; i < value.length; i++) {
+            this.writeFloat64(value[i])
+        }
+    }
 }
 
 export { BufferWriter }

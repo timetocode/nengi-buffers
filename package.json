@@ -1,6 +1,6 @@
 {
   "name": "nengi-buffers",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Node Buffer reader and writer for nengi",
   "main": "./build/index.js",
   "scripts": {

@@ -80,3 +80,107 @@ test('readFloat64', () => {
     expect(br.readFloat64()).toBeCloseTo(value); // checks to 2 decimal places
     expect(br.offset).toBe(8);
 });
+test('readUInt8Array', () => {
+    const value = new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    const buf = Buffer.alloc(14);
+    let offset = 0;
+    buf.writeUint32BE(value.length, offset);
+    offset += 4;
+    value.forEach(byte => {
+        buf.writeUint8(byte, offset);
+        offset += 1;
+    });
+    const br = new BufferReader_1.BufferReader(buf, 0);
+    expect(br.readUInt8Array()).toEqual(value);
+});
+test('readInt8Array', () => {
+    const value = new Int8Array([0, 1, 2, 3, -4, -5, 6, 7, 8, 9]);
+    const buf = Buffer.alloc(14);
+    let offset = 0;
+    buf.writeUint32BE(value.length, offset);
+    offset += 4;
+    value.forEach(byte => {
+        buf.writeInt8(byte, offset);
+        offset += 1;
+    });
+    const br = new BufferReader_1.BufferReader(buf, 0);
+    expect(br.readInt8Array()).toEqual(value);
+});
+test('readUInt16Array', () => {
+    const value = new Uint16Array([0, 1, 2, 3, 4, 5, 6, 7, 8, 65535]);
+    const buf = Buffer.alloc(24);
+    let offset = 0;
+    buf.writeUint32BE(value.length, offset);
+    offset += 4;
+    value.forEach(byte => {
+        buf.writeUint16BE(byte, offset);
+        offset += 2;
+    });
+    const br = new BufferReader_1.BufferReader(buf, 0);
+    expect(br.readUInt16Array()).toEqual(value);
+});
+test('readInt16Array', () => {
+    const value = new Int16Array([0, 1, 2, 3, -4, -5, 6, 7, 8, 32767]);
+    const buf = Buffer.alloc(24);
+    let offset = 0;
+    buf.writeUint32BE(value.length, offset);
+    offset += 4;
+    value.forEach(byte => {
+        buf.writeInt16BE(byte, offset);
+        offset += 2;
+    });
+    const br = new BufferReader_1.BufferReader(buf, 0);
+    expect(br.readInt16Array()).toEqual(value);
+});
+test('readUInt32Array', () => {
+    const value = new Uint32Array([0, 1, 2, 3, 4, 5, 6, 7, 8, 12365535]);
+    const buf = Buffer.alloc(44);
+    let offset = 0;
+    buf.writeUint32BE(value.length, offset);
+    offset += 4;
+    value.forEach(byte => {
+        buf.writeUint32BE(byte, offset);
+        offset += 4;
+    });
+    const br = new BufferReader_1.BufferReader(buf, 0);
+    expect(br.readUInt32Array()).toEqual(value);
+});
+test('readInt32Array', () => {
+    const value = new Int32Array([0, 1, 2, 3, -4, -5, 6, 7, 8, 12332767]);
+    const buf = Buffer.alloc(44);
+    let offset = 0;
+    buf.writeUint32BE(value.length, offset);
+    offset += 4;
+    value.forEach(byte => {
+        buf.writeInt32BE(byte, offset);
+        offset += 4;
+    });
+    const br = new BufferReader_1.BufferReader(buf, 0);
+    expect(br.readInt32Array()).toEqual(value);
+});
+test('readFloat32Array', () => {
+    const value = new Float32Array([0, 1.123, 2, 3, -4.123, -5, 6, 7, 8, 12332.767]);
+    const buf = Buffer.alloc(44);
+    let offset = 0;
+    buf.writeUint32BE(value.length, offset);
+    offset += 4;
+    value.forEach(byte => {
+        buf.writeFloatBE(byte, offset);
+        offset += 4;
+    });
+    const br = new BufferReader_1.BufferReader(buf, 0);
+    expect(br.readFloat32Array()).toEqual(value);
+});
+test('readFloat64Array', () => {
+    const value = new Float64Array([0, 1.123, 2, 3, -4.123, -5, 6, 7, 8, 12332.767]);
+    const buf = Buffer.alloc(84);
+    let offset = 0;
+    buf.writeUint32BE(value.length, offset);
+    offset += 4;
+    value.forEach(byte => {
+        buf.writeDoubleBE(byte, offset);
+        offset += 8;
+    });
+    const br = new BufferReader_1.BufferReader(buf, 0);
+    expect(br.readFloat64Array()).toEqual(value);
+});

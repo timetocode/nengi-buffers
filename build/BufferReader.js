@@ -57,11 +57,65 @@ class BufferReader {
     }
     readUInt8Array() {
         const length = this.readUInt32();
-        // console.log({ length })
         const arr = new Uint8Array(length);
         for (let i = 0; i < length; i++) {
             arr[i] = this.readUInt8();
-            //console.log(i, arr[i])
+        }
+        return arr;
+    }
+    readInt8Array() {
+        const length = this.readUInt32();
+        const arr = new Int8Array(length);
+        for (let i = 0; i < length; i++) {
+            arr[i] = this.readInt8();
+        }
+        return arr;
+    }
+    readUInt16Array() {
+        const length = this.readUInt32();
+        const arr = new Uint16Array(length);
+        for (let i = 0; i < length; i++) {
+            arr[i] = this.readUInt16();
+        }
+        return arr;
+    }
+    readInt16Array() {
+        const length = this.readUInt32();
+        const arr = new Int16Array(length);
+        for (let i = 0; i < length; i++) {
+            arr[i] = this.readInt16();
+        }
+        return arr;
+    }
+    readUInt32Array() {
+        const length = this.readUInt32();
+        const arr = new Uint32Array(length);
+        for (let i = 0; i < length; i++) {
+            arr[i] = this.readUInt32();
+        }
+        return arr;
+    }
+    readInt32Array() {
+        const length = this.readUInt32();
+        const arr = new Int32Array(length);
+        for (let i = 0; i < length; i++) {
+            arr[i] = this.readInt32();
+        }
+        return arr;
+    }
+    readFloat32Array() {
+        const length = this.readUInt32();
+        const arr = new Float32Array(length);
+        for (let i = 0; i < length; i++) {
+            arr[i] = this.readFloat32();
+        }
+        return arr;
+    }
+    readFloat64Array() {
+        const length = this.readUInt32();
+        const arr = new Float64Array(length);
+        for (let i = 0; i < length; i++) {
+            arr[i] = this.readFloat64();
         }
         return arr;
     }

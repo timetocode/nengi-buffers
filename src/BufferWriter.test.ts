@@ -255,3 +255,20 @@ test('writeFloat64Array', () => {
     expect(buf.readDoubleBE(68)).toBe(value[8])
     expect(buf.readDoubleBE(76)).toBe(value[9])
 })
+
+test('writeString', () => {
+    const value = 'hello world'
+    const buf = Buffer.alloc(4 + value.length)
+    const bw = new BufferWriter(buf, 0)
+    bw.writeString(value)
+    expect(buf.toString('utf-8', 4)).toBe(value)
+    /*
+    const textBuffer = Buffer.from(value, 'utf-8')
+    const buf = Buffer.alloc(4 + textBuffer.byteLength)
+    
+    let offset = 0
+    buf.writeUInt32BE(textBuffer.byteLength, offset)
+    offset +=4
+    buf.write(value, 'utf-8')
+    */
+})

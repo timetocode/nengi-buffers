@@ -1,7 +1,7 @@
 import { IBinaryWriter } from 'nengi'
 import { Buffer } from 'buffer'
 
-class BufferWriter implements IBinaryWriter {
+class BufferWriter implements IBinaryWriter<Buffer> {
     buffer: Buffer
     offset: number
 
@@ -10,7 +10,11 @@ class BufferWriter implements IBinaryWriter {
         this.offset = offset || 0
     }
 
-    static create(byteLength: number) {
+    get payload(): Buffer {
+        return this.buffer
+    }
+
+    static create(byteLength: number): BufferWriter {
         return new BufferWriter(Buffer.allocUnsafe(byteLength))
     }
 
@@ -61,12 +65,15 @@ class BufferWriter implements IBinaryWriter {
         this.offset += length
     }
 
+    writeBytes(value: Uint8Array) {
+        this.buffer.set(value, this.offset)
+        this.offset += value.byteLength
+    }
+
     writeUInt8Array(value: Uint8Array) {
         const length = value.byteLength
         this.writeUInt32(length)
-        for (let i = 0; i < value.length; i++) {
-            this.writeUInt8(value[i])
-        }
+        this.writeBytes(value)
     }
 
     writeInt8Array(value: Int8Array) {

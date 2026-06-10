@@ -16,3 +16,4 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./BufferReader"), exports);
 __exportStar(require("./BufferWriter"), exports);
+__exportStar(require("./BufferBinary"), exports);

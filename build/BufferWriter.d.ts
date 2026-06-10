@@ -1,10 +1,10 @@
-/// <reference types="node" />
 import { IBinaryWriter } from 'nengi';
 import { Buffer } from 'buffer';
-declare class BufferWriter implements IBinaryWriter {
+declare class BufferWriter implements IBinaryWriter<Buffer> {
     buffer: Buffer;
     offset: number;
     constructor(buffer: Buffer, offset?: number);
+    get payload(): Buffer;
     static create(byteLength: number): BufferWriter;
     writeUInt8(value: number): void;
     writeInt8(value: number): void;
@@ -15,6 +15,7 @@ declare class BufferWriter implements IBinaryWriter {
     writeFloat32(value: number): void;
     writeFloat64(value: number): void;
     writeString(value: string): void;
+    writeBytes(value: Uint8Array): void;
     writeUInt8Array(value: Uint8Array): void;
     writeInt8Array(value: Int8Array): void;
     writeUInt16Array(value: Uint16Array): void;

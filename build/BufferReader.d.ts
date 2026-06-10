@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import { IBinaryReader } from 'nengi';
 declare class BufferReader implements IBinaryReader {
     buffer: Buffer;

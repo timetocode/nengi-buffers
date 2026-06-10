@@ -1,22 +1,22 @@
 {
   "name": "nengi-buffers",
-  "version": "0.4.0",
+  "version": "2.0.0-rc.120",
   "description": "Node Buffer reader and writer for nengi",
   "main": "./build/index.js",
   "scripts": {
-    "test": "npx jest",
-    "build": "npx tsc"
+    "test": "jest",
+    "build": "tsc"
   },
   "author": "Alex // timetocode",
   "license": "Apache 2.0",
   "devDependencies": {
-    "@types/jest": "^29.4.0",
-    "@types/node": "^18.11.18",
-    "jest": "^29.4.1",
-    "ts-jest": "^29.0.5"
+    "@types/jest": "^29.5.14",
+    "@types/node": "^20.19.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.4.0",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
-    "nengi": "^2.0.0-alpha.8",
-    "typescript": "^5.0.4"
+    "nengi": "file:../nengi"
   }
 }

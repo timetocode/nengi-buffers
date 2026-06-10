@@ -7,6 +7,9 @@ class BufferWriter {
         this.buffer = buffer;
         this.offset = offset || 0;
     }
+    get payload() {
+        return this.buffer;
+    }
     static create(byteLength) {
         return new BufferWriter(buffer_1.Buffer.allocUnsafe(byteLength));
     }
@@ -48,12 +51,14 @@ class BufferWriter {
         this.buffer.write(value, this.offset, 'utf8');
         this.offset += length;
     }
+    writeBytes(value) {
+        this.buffer.set(value, this.offset);
+        this.offset += value.byteLength;
+    }
     writeUInt8Array(value) {
         const length = value.byteLength;
         this.writeUInt32(length);
-        for (let i = 0; i < value.length; i++) {
-            this.writeUInt8(value[i]);
-        }
+        this.writeBytes(value);
     }
     writeInt8Array(value) {
         const length = value.length;

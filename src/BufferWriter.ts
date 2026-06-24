@@ -1,4 +1,4 @@
-import { IBinaryWriter } from 'nengi'
+import type { IBinaryWriter } from 'nengi'
 import { Buffer } from 'buffer'
 
 class BufferWriter implements IBinaryWriter<Buffer> {

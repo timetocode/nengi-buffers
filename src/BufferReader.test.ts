@@ -217,3 +217,19 @@ test('readFloat64Array', () => {
     const br = new BufferReader(buf, 0)
     expect(br.readFloat64Array()).toEqual(value)
 })
+
+test('readString rejects lengths beyond the payload', () => {
+    const buf = Buffer.alloc(4)
+    buf.writeUInt32BE(1, 0)
+    const br = new BufferReader(buf, 0)
+
+    expect(() => br.readString()).toThrow('Cannot read 1 bytes')
+})
+
+test('readUInt8Array rejects lengths beyond the payload before allocating', () => {
+    const buf = Buffer.alloc(4)
+    buf.writeUInt32BE(0xffffffff, 0)
+    const br = new BufferReader(buf, 0)
+
+    expect(() => br.readUInt8Array()).toThrow('Cannot read')
+})
